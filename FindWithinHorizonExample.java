@@ -24,3 +24,18 @@ public class FindWithinHorizonExample {
         scanner.close();
     }
 }
+
+/* 
+In this example, the program prompts the user to enter a sentence and a word to search for within that sentence. 
+The findWithinHorizon() method is then used to search for the specified word within the sentence.
+
+After executing the method, the program checks if the word was found (foundText != null) and prints either "Found: [word]" 
+or "Word not found!" accordingly.
+
+Note that the findWithinHorizon() method takes two parameters: the pattern (word to search for) and the horizon (the search limit within 
+the input). 
+
+In this example, we use sentence.length() as the horizon to search the entire input sentence.
+
+Remember to import the java.util.Scanner class at the beginning of your program to use the Scanner class and its methods.
+*/
