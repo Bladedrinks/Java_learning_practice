@@ -1,3 +1,5 @@
+// Here's a simple example that demonstrates how to use the findWithinHorizon() method from the Scanner class:
+
 import java.util.Scanner;
 
 public class FindWithinHorizonExample {
