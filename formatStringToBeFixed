@@ -1,0 +1,15 @@
+/* This file shows us a problem to be fixed. What should we do with the underscores (__) right after the 5 sign as a placeholder to get a 
+desired output of '>>(7)<<'. This problem is given by Barry Burd in his book Java For Dummies, pp. 184-5. */
+
+package 屈鹏飞的练习.formatStrings;
+
+import static java.lang.System.out;
+
+public class formatStringsPractice {
+    
+    public static void main(String[] args) {
+    
+        out.printf("%s%__%s", ">>", -7, "<<\n"); // wanted:>>(7)<< 
+     
+    }
+}
