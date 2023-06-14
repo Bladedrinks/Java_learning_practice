@@ -1,0 +1,33 @@
+package places;
+
+public class PlaceToLive {
+    private String address;
+    private int numberOfBedroom;
+    private double area;
+
+    public void setAddress(String adr) {
+        address = adr;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setNumberOfBedroom(int n) {
+        numberOfBedroom = n;
+    }
+
+    public int getNumberOfBedroom() {
+        return numberOfBedroom;
+    }
+
+    public void setArea(double ar) {
+        area = ar;
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    
+}
