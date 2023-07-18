@@ -1,0 +1,186 @@
+/* Below is the 'PlaceToLive' class, which is the superclass of the 'House' and 
+ * 'Apartment' classes, and the superclass of the superclass of the 'ApartmentWithFees' class. 
+ */
+public class PlaceToLive {
+    
+    /* Below are fields of the 'PlaceToLive' class*/
+    private String address;
+    private int numOfBedrooms;
+    private double area;
+    private double monthlyCost;
+
+    /* Below are methods of the 'PlaceToLive' class:
+     */
+    public void setAddress(String addressIn) {
+        address = addressIn;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setNumOfBedrooms(int numOfBedroomsIn) {
+        numOfBedrooms = numOfBedroomsIn;
+    }
+
+    public int getNumOfBedrooms() {
+        return numOfBedrooms;
+    }
+
+    public void setArea(double areaIn) {
+        area = areaIn;
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public void setMonthlyCost(double monthlyCostIn) {
+        monthlyCost = monthlyCostIn;
+    }
+
+    public double getMonthlyCost() {
+        return monthlyCost;
+    }
+
+    public void displayMonthlyCost() {
+        System.out.println(getAddress() + " has " + getNumOfBedrooms() + " bedrooms, takes up " + getArea() + " square feet, and costs $" + getMonthlyCost() + " per month.");
+        System.out.println("For each month, it costs $" + getMonthlyCost() / getNumOfBedrooms() + " per bedroom and $"+ getMonthlyCost() / getArea() + " per square foot.");
+    }
+}
+
+/* Below is a subclass of the 'PlaceToLive' class which inherits all the fields and
+ * methods of its superclass.
+ */
+
+public class House extends PlaceToLive {
+
+    public double monthlyMortgage;
+    public double yearlyPopertyTax;
+
+    public void setMonthlyMortgage(double monthlyMortgageIn) {
+        monthlyMortgage = monthlyMortgageIn;
+    }
+
+    public double getMonthlyMortgage() {
+        return monthlyMortgage;
+    }
+
+    public void setYearlyPopertyTax(double yearlyPopertyTaxIn) {
+        yearlyPopertyTax = yearlyPopertyTaxIn;
+    }
+
+    public double getYearlyPopertyTax() {
+        return yearlyPopertyTax;
+    }
+
+    public double findMonthlyCost() {
+        return getMonthlyMortgage() + (getYearlyPopertyTax() / 12);
+    }
+
+    @Override
+    public void displayMonthlyCost() {
+        System.out.println(getAddress() + " has " + getNumOfBedrooms() + " bedrooms, takes up " + getArea() + " square feet, and costs $" + findMonthlyCost() + " per month.");
+        System.out.println("For each month, it costs $" + findMonthlyCost() / getNumOfBedrooms() + " per bedroom and $"+ findMonthlyCost() / getArea() + " per square foot.");
+    }  
+}
+
+/* Below is a subclass of the 'PlaceToLive' class which inherits all the fields and
+ * methods of its superclass.
+ */
+
+public class Apartment extends PlaceToLive {
+    
+    public double rental;
+
+    public void setRental(double rentalIn) {
+        rental = rentalIn;
+    }
+
+    public double getRental() {
+        return rental;
+    }
+    
+    public double findMonthlyCost() {
+        return rental;
+    }
+
+    @Override
+    public void displayMonthlyCost() {
+        System.out.println(getAddress() + " has " + getNumOfBedrooms() + " bedrooms, takes up " + getArea() + " square feet, and costs $" + findMonthlyCost() + " per month.");
+        System.out.println("For each month, it costs $" + findMonthlyCost() / getNumOfBedrooms() + " per bedroom and $"+ findMonthlyCost() / getArea() + " per square foot.");
+    
+    }
+}
+
+/* Below is a subclass of the 'Apartment' class which inherits all the fields and
+ * methods of its superclass, and also a subclass of a subclass of the 'PlaceToLive' class.
+ */
+
+public class ApartmentWithFees extends Apartment {
+
+    public double extraFeeForQuarter; /* This fixed fee is paid quarterly, not monthly. */
+
+    public void setExtraFeeForQuarter(double extraFeeForQuarterIn) {
+        extraFeeForQuarter = extraFeeForQuarterIn;
+    }
+
+    public double getExtraFeeForQuarter() {
+        return extraFeeForQuarter;
+    }
+
+    @Override
+    public double findMonthlyCost() {
+        return rental + (getExtraFeeForQuarter() / 3);
+    }
+
+    @Override
+    public void displayMonthlyCost() {
+        System.out.println(getAddress() + " has " + getNumOfBedrooms() + " bedrooms, takes up " + getArea() + " square feet and costs $" + findMonthlyCost() + " per month.");
+        System.out.println("For each month, it costs $" + findMonthlyCost() / getNumOfBedrooms() + " per bedroom and $"+ findMonthlyCost() / getArea() + " per square foot.");
+    }
+}
+
+/* Below is the 'Main' class of my solution to TRY_IT_OUT on page 230 in 'Dummies For Java'. 
+ * The TRY_IT_OUT asks me to create a class (separate from the 'House', 'Apartment',
+ * and 'ApartmentWithFees' classes) that displays the monthly cost of living in a
+ * 'House', an 'Apartment', and an 'Apartment With Fees'.
+ */
+
+public class DisplayThePlaces {
+    
+    public static void main(String[] args) {
+
+        System.out.println();
+
+        House house1 = new House();
+        house1.setAddress("123 Main Street, Anytown, State 12345");
+        house1.setNumOfBedrooms(6);
+        house1.setArea(400.00);
+        house1.setMonthlyMortgage(5000.00);
+        house1.setYearlyPopertyTax(3000.00);
+        house1.displayMonthlyCost();  
+
+        System.out.println();
+
+        Apartment apartment1 = new Apartment();
+        apartment1.setAddress("456 Oak Street, Apartment 123, Anytown, State 12345");
+        apartment1.setNumOfBedrooms(2);
+        apartment1.setArea(60.00);
+        apartment1.setRental(700.00);
+        apartment1.displayMonthlyCost();
+
+        System.out.println();
+
+        ApartmentWithFees apartmentWithFees1 = new ApartmentWithFees();
+        apartmentWithFees1.setAddress("1-2-3 Shibuya, Apartment 456, Shibuya-ku, Tokyo 123-4567, Japan");
+        apartmentWithFees1.setNumOfBedrooms(3);
+        apartmentWithFees1.setArea(75.00);
+        apartmentWithFees1.setRental(800.00);
+        apartmentWithFees1.setExtraFeeForQuarter(150.00);
+        apartmentWithFees1.displayMonthlyCost();
+
+        System.out.println();
+
+    }
+}
